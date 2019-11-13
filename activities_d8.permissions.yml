@@ -1,0 +1,4 @@
+Access training content:
+  title: 'Access training content'
+  description: 'custom permission to access activity content'
+  restrict access: true

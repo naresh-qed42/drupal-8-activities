@@ -1,0 +1,8 @@
+dynamic.routing:
+  path: '/arg-demo/{arg}'
+  defaults:
+    _controller: '\Drupal\activities_d8\Controller\DynamicRouteController::dynamic_content'
+    _title: 'Dynamic listing'
+    arg: 'Default value'
+  requirements: 
+    _permission: 'Access training content'
