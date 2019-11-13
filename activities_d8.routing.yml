@@ -6,3 +6,40 @@ static.content:
   requirements:
     _custom_access: 'Drupal\activities_d8\Controller\StaticContentController::access_training_content'
 
+dynamic.routing:
+  path: '/arg-demo/{arg}'
+  defaults:
+    _controller: '\Drupal\activities_d8\Controller\DynamicRouteController::dynamic_content'
+    _title: 'Dynamic listing'
+    arg: 'Default value'
+  requirements: 
+    _permission: 'Access training content'
+
+dynamic.route_entity:
+  path: '/list/{nid}'
+  defaults:
+    _controller: '\Drupal\activities_d8\Controller\EntityDynamicRouteController::Content'
+    _title: 'Node Detail'
+    nid: 1
+  requirements: 
+    _custom_access: 'Drupal\activities_d8\Controller\EntityDynamicRouteController::access'
+  options:
+    parameters:
+      nid:
+        type: entity:node
+
+dynamic.route_multiple_entity:
+  path: '/listnodes/{nid1}/{nid2}'
+  defaults:
+    _controller: '\Drupal\activities_d8\Controller\EntityDynamicRouteController::multiplenodes'
+    _title: 'Node Detail'
+    nid1: 1
+    nid2: 1
+  requirements: 
+    _permission: 'access content'
+  options:
+    parameters:
+      nid1:
+        type: entity:node
+      nid2:
+        type: entity:node
