@@ -1,0 +1,8 @@
+static.content:
+  path: '/static-content'
+  defaults:
+    _controller: '\Drupal\activities_d8\Controller\StaticContentController::static'
+    _title: 'Static Content Page'
+  requirements:
+    _custom_access: 'Drupal\activities_d8\Controller\StaticContentController::access_training_content'
+
