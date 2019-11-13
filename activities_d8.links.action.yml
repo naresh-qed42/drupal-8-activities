@@ -1,0 +1,5 @@
+menu_ui.link_add:
+  route_name: dynamic.route_entity
+  title: 'Add Content'
+  appears_on:
+    - dynamic.route_entity
