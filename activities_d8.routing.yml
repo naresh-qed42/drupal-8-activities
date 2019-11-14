@@ -22,7 +22,7 @@ dynamic.route_entity:
     _title: 'Node Detail'
     nid: 1
   requirements: 
-    _custom_access: 'Drupal\activities_d8\Controller\EntityDynamicRouteController::access'
+    _training_access_check: 'TRUE'
   options:
     parameters:
       nid:
@@ -43,3 +43,28 @@ dynamic.route_multiple_entity:
         type: entity:node
       nid2:
         type: entity:node
+
+persmission.public_content:
+  path: '/public-content'
+  defaults:
+    _controller: '\Drupal\activities_d8\Controller\StaticContentController::static'
+    _title: 'Static Content Page'
+  requirements:
+    _access: 'TRUE'
+
+persmission.logged_in:
+  path: '/logged-in-content'
+  defaults:
+    _controller: '\Drupal\activities_d8\Controller\StaticContentController::static'
+    _title: 'Static Content Page'
+  requirements:
+    _user_is_logged_in: 'TRUE'
+
+persmission.content-role-content:
+  path: '/content-role-content'
+  defaults:
+    _controller: '\Drupal\activities_d8\Controller\StaticContentController::static'
+    _title: 'Static Content Page'
+  requirements:
+    _role: content
+
