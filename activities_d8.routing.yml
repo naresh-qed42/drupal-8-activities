@@ -76,3 +76,11 @@ simple.form:
  requirements:
    _permission: 'access content'
 
+weather.config:
+ path: '/admin/weather-config'
+ defaults:
+   _title: 'Weather config form'
+   _form: '\Drupal\activities_d8\Form\WeatherConfigForm'
+ requirements:
+   _permission: 'administer site configuration'
+
