@@ -29,6 +29,7 @@ class DatabaseOperations {
     return $this->database->select('d8_demo', 'demo')
       ->fields('demo', ['first_name', 'last_name'])
       ->range(0, 1)
+      ->orderBy('pid', 'DESC')
       ->execute()->fetchAll();
   }
 

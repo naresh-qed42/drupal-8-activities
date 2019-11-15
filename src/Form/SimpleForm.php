@@ -78,7 +78,6 @@ class SimpleForm extends FormBase {
           ':input[name="qualification"]' => ['value' => 'other'],
         ],
       ],
-      '#required' => TRUE,
     ];
     $form['countries'] = [
       '#type' => 'select',
