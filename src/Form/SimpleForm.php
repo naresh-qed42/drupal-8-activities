@@ -126,6 +126,11 @@ class SimpleForm extends FormBase {
       '#prefix' => '<div id="edit-states">',
       '#suffix' => '</div>',
     ];
+    $last_submission_time = \Drupal::state()->get('last_submission_time');
+    $form['last_submitted'] = [
+      '#type' => 'markup',
+      '#markup' => '<i>' . format_date($last_submission_time, 'long') . '</i>',
+    ];
     $form['actions']['#type'] = 'actions';
     $form['actions']['submit'] = [
       '#type' => 'submit',
@@ -149,6 +154,7 @@ class SimpleForm extends FormBase {
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $this->dbWrapper->store($form_state->getValue('first_name'), $form_state->getValue('last_name'));
     drupal_set_message($form_state->getValue('first_name') . ': Value submitted successully');
+    \Drupal::state()->set('last_submission_time', time());
   }
 
   /**
