@@ -61,10 +61,76 @@ class SimpleForm extends FormBase {
       '#default_value' => $last_name,
       '#required' => TRUE,
     ];
+    $form['qualification'] = [
+      '#type' => 'select',
+      '#title' => t('qualification'),
+      '#options' => ['UG' => 'U.G', 'P.G' => 'PG', 'other' => 'Other'],
+
+    ];
+    $form['other_qualification'] = [
+      '#type' => 'textfield',
+      '#title' => t('Please specify'),
+      '#states' => [
+        'visible' => [
+          ':input[name="qualification"]' => ['value' => 'other'],
+        ],
+        'required' => [
+          ':input[name="qualification"]' => ['value' => 'other'],
+        ],
+      ],
+      '#required' => TRUE,
+    ];
+    $form['countries'] = [
+      '#type' => 'select',
+      '#title' => ('Country'),
+      '#options' => [
+        'select' => t('Select'),
+        'india' => t('India'),
+        'uk' => t('UK'),
+      ],
+      '#ajax' => [
+        'callback' => '::myAjaxCallback',
+        'event' => 'change',
+        'wrapper' => 'edit-states',
+        'progress' => [
+          'type' => 'throbber',
+          'message' => $this->t('Fetching states...'),
+        ],
+      ],
+    ];
+    $states_array = [];
+    $disabled = TRUE;
+    $states = ['Select' => 'Select'];
+    if (!empty($form_state->getValue('countries'))) {
+      switch ($form_state->getValue('countries')) {
+        case 'india':
+          $states = ['gujarat' => 'Gujarat', 'maharashtra' => 'Maharashtra'];
+          $disabled = FALSE;
+          break;
+
+        case 'uk':
+          $states = ['england' => 'England', 'scottland' => 'Scottland'];
+          $disabled = FALSE;
+          break;
+
+        default:
+          $states = ['Select' => 'Select'];
+          break;
+      }
+    }
+    $form['country_states'] = [
+      '#type' => 'select',
+      '#title' => ('States'),
+      '#disabled' => $disabled,
+      '#options' => $states,
+      '#value' => 'none',
+      '#prefix' => '<div id="edit-states">',
+      '#suffix' => '</div>',
+    ];
     $form['actions']['#type'] = 'actions';
     $form['actions']['submit'] = [
       '#type' => 'submit',
-      '#value' => $this->t('Save'),
+      '#value' => t('Save'),
     ];
     return $form;
   }
@@ -84,6 +150,13 @@ class SimpleForm extends FormBase {
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $this->dbWrapper->store($form_state->getValue('first_name'), $form_state->getValue('last_name'));
     drupal_set_message($form_state->getValue('first_name') . ': Value submitted successully');
+  }
+
+  /**
+   *
+   */
+  public function myAjaxCallback(array &$form, FormStateInterface $form_state) {
+    return $form['country_states'];
   }
 
 }
