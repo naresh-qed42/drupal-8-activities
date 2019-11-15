@@ -4,3 +4,7 @@ services:
     arguments: ['@current_user']
     tags:
       - { name: access_check, applies_to: _training_access_check }
+
+  activities.database:
+    class: Drupal\activities_d8\DatabaseOperations
+    arguments: ['@database']

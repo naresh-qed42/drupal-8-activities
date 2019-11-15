@@ -21,10 +21,9 @@ class CustomAccessCheck implements AccessInterface {
    *   The access result.
    */
   public function access(AccountInterface $account, nodeInterface $nid) {
-    $account->id();exit;
-    // Check permissions and combine that with any custom access checking needed. Pass forward
-    // parameters from the route and/or request as needed.
-    return  ($account->hasPermission('Access training content')) ? AccessResult::allowed() : AccessResult::forbidden();
+    $nodeAuthor = $nid->getOwnerId();
+    $currentUserId = $account->id();
+    return AccessResult::allowedIf($nodeAuthor == $currentUserId);
   }
 
 }

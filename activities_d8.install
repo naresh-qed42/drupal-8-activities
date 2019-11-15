@@ -1,0 +1,33 @@
+<?php
+/**
+* Implements hook_schema().
+*
+* Defines the database tables used by this module.
+*
+* @see hook_schema()
+*
+* @ingroup drupal 8 activities
+*/
+function activities_d8_schema() {
+  $schema['d8_demo'] = array(
+    'description' => 'Drupal 8 training activities.',
+    'fields' => array(
+      'first_name' => array(
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'First Name of the person.',
+      ),
+      'last_name' => array(
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'Last Name of the person.',
+      ),
+    ),
+  );
+
+  return $schema;
+}

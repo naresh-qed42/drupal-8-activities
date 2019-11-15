@@ -68,3 +68,11 @@ persmission.content-role-content:
   requirements:
     _role: content
 
+simple.form:
+ path: '/simple-form'
+ defaults:
+   _title: 'Simple form'
+   _form: '\Drupal\activities_d8\Form\SimpleForm'
+ requirements:
+   _permission: 'access content'
+
