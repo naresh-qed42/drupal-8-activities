@@ -56,7 +56,11 @@ class OpenWeatherBlock extends BlockBase implements ContainerFactoryPluginInterf
       '#humidity' => $city_weather_data['humidity'],
       '#temp_min' => $city_weather_data['temp_min'],
       '#temp_max' => $city_weather_data['temp_max'],
+      '#attached' => [
+        'library' => 'activities_d8/weather-info',
+      ],
     ];
+    ;
   }
 
   /**

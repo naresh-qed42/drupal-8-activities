@@ -20,3 +20,10 @@ function activities_d8_theme($existing, $type, $theme, $path) {
     ],
   ];
 }
+
+/**
+ *
+ */
+function activities_d8_page_attachments_alter(&$page) {
+  $page['#attached']['library'][] = 'activities_d8/common-info';
+}

@@ -1,0 +1,15 @@
+weather-info:
+  js:
+    js/custom-weather-widget.js: {}
+    https://cdn.rawgit.com/nnattawat/flip/master/dist/jquery.flip.min.js: { type: external, minified: true }
+  css:
+    theme:
+      css/weather-info.css : {}
+  dependencies:
+    - core/jquery
+
+common-info:
+  css:
+    theme:
+      css/common-design.css : {}
+
