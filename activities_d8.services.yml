@@ -8,3 +8,7 @@ services:
   activities.database:
     class: Drupal\activities_d8\DatabaseOperations
     arguments: ['@database']
+
+  activities.weather_data:
+    class: Drupal\activities_d8\WeatherData
+    arguments: ['@http_client', '@config.factory']
