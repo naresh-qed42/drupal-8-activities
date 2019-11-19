@@ -6,12 +6,28 @@ use Drupal\Core\Controller\ControllerBase;
 use Drupal\node\NodeInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\Access\AccessResult;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
+
+
 
 /**
  * An example of entity based dynamic route.
  */
 class EntityDynamicRouteController extends ControllerBase {
 
+  public function __construct(EntityTypeManagerInterface $entity_type_manager) {
+    $this->entityTypeManager = $entity_type_manager;
+  }
+
+ /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container) {
+    return new static(
+      $container->get('entity_type.manager')
+    );
+  }
   /**
    * Display node information.
    *
@@ -43,8 +59,7 @@ class EntityDynamicRouteController extends ControllerBase {
       $nid1,
       $nid2,
     ];
-
-    $view_builder = \Drupal::entityTypeManager()->getViewBuilder($entityType);
+    $view_builder = $this->entityManager()->getViewBuilder($entityType);
     $build = $view_builder->viewMultiple($nodes, $view_mode);
     $output = [
       '#markup' => render($build),

@@ -12,3 +12,8 @@ services:
   activities.weather_data:
     class: Drupal\activities_d8\WeatherData
     arguments: ['@http_client', '@config.factory']
+
+  activities:header_update:
+    class: Drupal\activities_d8\EventSubscriber\ActivitiesSubscriber
+    tags:
+      - { name: 'event_subscriber' }
