@@ -4,6 +4,13 @@
  * @file
  */
 
+use Drupal\node\Entity\Node;
+use Drupal\activities_d8\Event\NodeInsertDemoEvent;
+
+/**
+ * @file
+ */
+
 /**
  *
  */
@@ -26,4 +33,12 @@ function activities_d8_theme($existing, $type, $theme, $path) {
  */
 function activities_d8_page_attachments_alter(&$page) {
   $page['#attached']['library'][] = 'activities_d8/common-info';
+}
+
+/**
+ *
+ */
+function activities_d8_node_insert(Node $entity) {
+  // Dispatch the node insert demo event so that subscribers can act accordingly.
+  \Drupal::service('event_dispatcher')->dispatch(NodeInsertDemoEvent::DEMO_NODE_INSERT, new NodeInsertDemoEvent($entity));
 }
