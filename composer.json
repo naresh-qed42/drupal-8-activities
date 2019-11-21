@@ -1,0 +1,13 @@
+{
+    "name": "naresh-qed42/activities_d8",
+    "type": "module",
+    "require": {
+        "antoineaugusti/google-books": "^0.3.0"
+    },
+    "authors": [
+        {
+            "name": "Naresh Bavaskar",
+            "email": "naresh.bavaskar@qed42.com"
+        }
+    ]
+}
