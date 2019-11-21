@@ -8,11 +8,11 @@ use Drupal\Core\Form\FormStateInterface;
 use GuzzleHttp\Client;
 
 /**
- * Provides a 'D8GoogleBooksBlock' block.
+ * Provides a 'Google book block' block.
  *
  * @Block(
- *  id = "d8google_books_block",
- *  admin_label = @Translation("D8google books block"),
+ *  id = "google_book_block",
+ *  admin_label = @Translation("google= bookblock"),
  * )
  */
 class GoogleBookBlock extends BlockBase {
@@ -33,9 +33,6 @@ class GoogleBookBlock extends BlockBase {
       '#title' => $this->t('ISBN'),
       '#description' => $this->t('Enter ISBN for the book.'),
       '#default_value' => $this->configuration['isbn'],
-      '#maxlength' => 64,
-      '#size' => 64,
-      '#weight' => '0',
     ];
     return $form;
   }
