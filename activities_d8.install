@@ -37,6 +37,7 @@ function activities_d8_schema() {
         'description' => 'Last Name of the person.',
       ],
     ],
+    // comment added for cherry-pick learn
     'primary key' => ['pid'],
   ];
 
